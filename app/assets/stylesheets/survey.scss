@@ -2,21 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 html{
-  height: 100%;
+  min-height: 100%;
+  margin: 0;
+
 }
 body{
   /*background-image: radial-gradient(white, #00A499);*/
   margin-top: 30px;
   background: linear-gradient(to right bottom, #00A499 50%, #e6fffd 50% );
+
   font-family: 'Overpass', sans-serif;
 }
+
+
 
 .content{
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: minmax(115px, auto);
   position: relative;
-  max-width: 960px;
+  //max-width: 960px;
   grid-gap: 20px;
   margin: 0 auto;
 }
@@ -96,6 +101,14 @@ input:checked + .content #grid{
   align-self: center;
   justify-self: left;
   padding-left: 20px;
+}
+
+.thankyou{
+  grid-column: 1 / 3;
+  /*background: red;*/
+  align-self: center;
+  justify-self: center;
+  /*padding-left: 20px;*/
 }
 
 .answers{
@@ -180,6 +193,12 @@ footer{
   grid-row: 1/4;
 }
 
+.patient-info-errors{
+  //display: none;
+  grid-column: 1/3;
+  grid-row: 1/4;
+}
+
 .patient-info form{
   /*background: red;*/
 }
@@ -192,4 +211,97 @@ footer{
 .btn-primary:hover{
   background-color: #008077 !important;
   border-color: #008077;
+}
+
+/* MEDIA QUERIES */
+
+
+
+@media screen and (max-width: 768px){
+  html,body{
+    background: linear-gradient(to right bottom, #00A499 50%, #e6fffd 50% );
+    margin: 0;
+  }
+  .content{
+    width: 100%;
+  }
+  footer{
+    font-size: 2vw;
+    width: 100%;
+  }
+  .heading{
+
+    width: 100%;
+    height: 30%;
+    grid-column: 3 / 11;
+    /*background: red;*/
+    //display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    //grid-gap: 10px;
+  }
+
+  .logo{
+    width: 100%;
+  }
+
+  .logo-img{
+    width: 75%;
+  }
+
+  .title{
+    //margin-left: 10px;
+  }
+  .title h1{
+    font-size: 7vw;
+
+  }
+  .survey{
+
+    grid-column: 3 / 11;
+    grid-row: 2 / 4;
+    background: #001a18;
+    border-radius: 10px;
+    color: white;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, minmax(100px, auto));
+    grid-gap: 10px;
+  }
+
+  .question{
+    font-size: 5vw;
+    margin-top: 25px;
+    grid-column: 2 / 11;
+    /*background: red;*/
+    align-self: center;
+    justify-self: left;
+    padding-left: 20px;
+  }
+
+  .question h2{
+    font-size: 5vw;
+  }
+  .answers{
+    grid-column: 2 / 12;
+    grid-row: 2 / 4;
+    /*background: green;*/
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(150px, auto);
+    grid-gap: 30px;
+    padding: 10px;
+  }
+
+  .patient-info{
+    display: none;
+    grid-column: 2/12;
+    grid-row: 1/4;
+  }
+
+  .answers-img{
+    width: 25%;
+
+  }
+
 }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey</title>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+
+    <%= stylesheet_link_tag 'survey' %>
+    <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
+
+
+
+
+  </head>
+  <body>
+    <!--<input type="checkbox"/> -->
+    <div class="content">
+      <div id="grid">
+        <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+      </div>
+      <div class="heading">
+        <div class="logo"> <%=  image_tag("DHRHSLogo", class:'logo logo-img') %> </div>
+        <div class="title"> <h1>| Patient Survey</h1> </div>
+      </div>
+      <div class="survey">
+        <div class="question">
+          <%  puts("QUESTIONS") %>
+          <%  puts(@questions) %>
+            <h2></h2>
+
+        </div>
+        <div class="answers">
+
+          <div id="unhappy"> <%=  image_tag("unhappy2", class:'answers-img') %> </div>
+          <div id="neutral"> <%=  image_tag("neutral", class:'answers-img') %> </div>
+          <div id="happy"> <%=  image_tag("happy", class:'answers-img') %> </div>
+
+        </div>
+
+        <div class="patient-info">
+
+          <%= form_for :questions, url: questions_path, html:{class:"patientForm"} do |f| %>
+
+            <div class="form-group">
+              <%= f.label :firstName, 'First Name', for:'validation'%>
+              <%= f.text_field :firstName, class:'form-control', id:'firstName', required: true%>
+
+            </div>
+            <div class="form-group">
+              <%= f.label :lastName, 'Last Name'%>
+              <%= f.text_field :lastName, class:'form-control', id:'lastName', required: true%>
+            </div>
+            <div class="form-group">
+              <%= f.label :phoneNumber, 'Phone Number'%>
+              <%= f.text_field :phoneNumber, class: 'form-control', id:'phoneNumber', required: true%>
+            </div>
+            <div class="form-group" style="display:none">
+              <%= f.label :answers, 'Answers'%>
+              <%= f.text_field :answers, class: 'form-control', id: "answers"%>
+            </div>
+            <%= f.submit 'Submit', class:'btn btn-primary' %>
+          <% end %>
+
+
+        </div>
+      </div>
+
+      <footer> <hr><p>DHR Health</p> </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js"></script>
+
+    <script>
+      bootstrapValidate('#firstName', 'required:Please fill out this field!');
+      bootstrapValidate('#lastName', 'required:Please fill out this field!');
+      bootstrapValidate('#phoneNumber', 'regex:[0-9][0-9[0-9]\-[0-9][0-9][0-9]\-[0-9][0-9][0-9][0-9]:Format must be XXX-XXX-XXXX');
+      bootstrapValidate('#phoneNumber', 'min:12:Please enter your 10-digit phone number');
+      bootstrapValidate('#phoneNumber', 'max:12:You entered too many characters');
+    </script>
+
+    <%= javascript_pack_tag 'survey' %>
+  </body>
+</html>
