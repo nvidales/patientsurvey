@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'file/index'
   get 'survey/index'
   #get 'questions/index'
